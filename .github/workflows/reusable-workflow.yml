@@ -18,4 +18,4 @@ jobs:
         env:
           URL: '${{ inputs.ingress-url }}'
         run: |
-          curl https://${{ env.URL }}/live -s | jq -r .status | grep -i live
+          curl https://$URL/live -s | jq -r .status | grep -i live

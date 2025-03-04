@@ -6,14 +6,7 @@ on:
       - main
 
 jobs:
-  docker:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-
   integration-test:
-    needs: docker
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code

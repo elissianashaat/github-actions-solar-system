@@ -25,27 +25,8 @@ jobs:
         with:
           version: 'v1.26.0'
 
-      - name: Set Kube Context
-        uses: azure/k8s-set-context@v3
-        with:
-          method: kubeconfig
-          kubeconfig: |
-            apiVersion: v1
-            kind: Config
-            clusters:
-              - name: my-cluster
-                cluster:
-                  server: https://your-kubernetes-server
-            contexts:
-              - name: my-context
-                context:
-                  cluster: my-cluster
-                  user: my-user
-            current-context: my-context
-            users:
-              - name: my-user
-                user:
-                  token: your-auth-token
+      - name: Debug Kubernetes Connection
+        run: kubectl cluster-info
 
       - name: Verify Kubectl Installation
         run: kubectl version -o yaml

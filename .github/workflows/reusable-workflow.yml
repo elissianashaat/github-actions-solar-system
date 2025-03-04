@@ -13,9 +13,5 @@ jobs:
       - env:
          URL: ${{ inputs.ingress-url }}
         run: |
-          echo "Testing URL: https://$URL/live"
           RESPONSE=$(curl -s -k https://$URL/live)
-          echo "Response: $RESPONSE"
-          echo "$RESPONSE" | jq . || echo "Invalid JSON response"
-          echo "$RESPONSE" | jq -r .status | grep -i live
-    
+          

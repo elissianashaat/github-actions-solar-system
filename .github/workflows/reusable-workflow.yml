@@ -2,15 +2,20 @@ name: Testing - Reusable Workflow
 on: 
   workflow_call:
     inputs:
-        ingress-url:
-            description: Provide the Ingress URL
-            required: true
-            type: string
+      ingress-url:
+        description: Provide the Ingress URL
+        required: true
+        type: string
+
 jobs:
   integration-test:
     runs-on: ubuntu-latest
     steps:
-      - env:
+      - name: Install jq
+        run: sudo apt-get install -y jq
+
+      - name: Run Integration Test
+        env:
           URL: '${{ inputs.ingress-url }}'
         run: |
-          curl https://${{ env.URL }}/live -s -k | jq -r .status | grep -i live
+          curl https://${{ env.URL }}/live -s | jq -r .status | grep -i live

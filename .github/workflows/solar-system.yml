@@ -52,6 +52,12 @@ jobs:
 
   integration-test:
     needs: dev-deploy
-    uses: ./.github/workflows/reusable-workflow.yml
-    with:
-      ingress-url: "example.com"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Run Reusable Workflow
+        uses: ./.github/workflows/reusable-workflow.yml
+        with:
+          ingress-url: "example.com"
